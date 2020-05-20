@@ -38,7 +38,7 @@ int main(int argc, char * argv[]) {
     do {
         c = in.get();
 
-        if (isspace(c) || std::count(DELIMITERS.begin(), DELIMITERS.end(), c) || c == EOF) {
+        if (c == EOF || isspace(c) || std::count(DELIMITERS.begin(), DELIMITERS.end(), c)) {
             if (word.empty()) // just another delimiter
                 continue;
 
