@@ -1,0 +1,9 @@
+Create program in C++ to process text files. Read text file lines one by one.
+It is not allowed to duplicate all contents of file in computer memory. See also other published requirements.
+alula
+F10. Create program to read given text file and print into another text file all words which are simmetric.
+ Symmetric words are spelled from right to left and from left to right equally.
+ Word in input file is string separated with space or separators like  dot . or comma , or brackets ( ) or
+ exclamation mark ! or question mark ? or end of line.
+
+ releveler repaper succus alula
