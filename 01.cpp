@@ -35,8 +35,10 @@ int main(int argc, char * argv[]) {
     char c;
     string word;
 
-    while(in.get(c)) {
-        if (isspace(c) || std::count(DELIMITERS.begin(), DELIMITERS.end(), c)) {
+    do {
+        c = in.get();
+
+        if (isspace(c) || std::count(DELIMITERS.begin(), DELIMITERS.end(), c) || c == EOF) {
             if (word.empty()) // just another delimiter
                 continue;
 
@@ -50,11 +52,7 @@ int main(int argc, char * argv[]) {
             // end of delimiter
             word.push_back(c);
         }
-    }
-    // check for last word before EOF
-    if (equal(word.begin(), word.begin() + word.size()/2, word.rbegin())) {
-        out << word << '\n';
-    }
+    } while(c != EOF);
 
     in.close();
     out.close();
