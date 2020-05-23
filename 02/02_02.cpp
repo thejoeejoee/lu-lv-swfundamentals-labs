@@ -1,4 +1,7 @@
 #include <cstdlib>
+#include <iostream>
+#include <sstream>
+#include <list>
 /**
  * @author Josef Kolar, jk19126
  * @brief G10, program working wih linked list to process numbers.
@@ -21,8 +24,62 @@ Example: List: 1 5 2 3 6 2 2 5 1 2. n=2 List after process: 1 5 2 6 2 2 1 2
 https://estudijas.lu.lv/mod/page/view.php?id=349989
 */
 
+using namespace std;
+
+class Remover {
+private:
+    int remover_value;
+    int prev = 0;
+    bool has_prev = false;
+public:
+    explicit Remover(int I) : remover_value(I) {};
+    bool operator()(const int & value) {
+        if (!has_prev) {
+            // first value, just store for following usage
+            prev = value;
+            has_prev = true;
+            return false;
+        }
+        // remove <=> previous is remover value and current is not equal to remover value
+        bool remove = prev == remover_value && value != prev;
+        prev = value;
+        return remove;
+    }
+};
+
 int main() {
+    std::list<int> values;
+    int remover_value;
+
+    // parse first line with values
+    std::string input_line;
+    std::getline(std::cin, input_line);
+    std::stringstream input_stream(input_line);
+    int v;
+    while (input_stream >> v) {
+        values.push_back(v);
+    }
+
+    // parse 'remover_value'
+    std::getline(std::cin, input_line);
+    std::stringstream remover_line(input_line);
+    if (!(remover_line >> remover_value)) {
+        std::cerr << "Unable to parse the 'n' on second line." << endl;
+        return EXIT_FAILURE;
+    }
+
+    // new instance of remover with 'n' value
+    Remover remover(remover_value);
+    for (auto const & i : values)
+        std::cout << i << " ";
+    std::cout << std::endl;
+
+    // remove all values fulfilling condition
+    values.remove_if(remover);
+
+    for (auto const & i : values)
+        std::cout << i << " ";
+    std::cout << std::endl;
 
     return EXIT_SUCCESS;
-
 }
