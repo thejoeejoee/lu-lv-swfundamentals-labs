@@ -21,6 +21,7 @@ private:
 public:
     explicit Remover(T remover_value) :
         remover_value(remover_value),
+        // initialize parent with specific compare function (taking care to previous element)
         std::function<bool(const T &)>([this](const T & value) {
             if (!has_prev) {
                 // first value, just store for next calls
