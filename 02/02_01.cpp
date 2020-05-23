@@ -52,12 +52,12 @@ int main() {
 
     auto item = values.head();
     while (item) {
-        std::cout << values.value_of(*item) << " ";
+        std::cout << values.value_of(item) << " ";
         item = values.next(item);
     }
     std::cout << std::endl;
 
-    // new instance of remover with 'n' value
+    // new instance of remover with 'n' value and remove all item fulfilling the condition
     Remover<int> remover(remover_value);
     values.remove_if(remover);
 

@@ -48,13 +48,12 @@ int main() {
         return EXIT_FAILURE;
     }
 
-    // new instance of remover with 'n' value_of
-    Remover<int> remover(remover_value);
     for (auto const & i : values)
         std::cout << i << " ";
     std::cout << std::endl;
 
-    // remove all values fulfilling condition
+    // new instance of remover with 'n' value and remove all item fulfilling condition
+    Remover<int> remover(remover_value);
     values.remove_if(remover);
 
     for (auto const & i : values)
