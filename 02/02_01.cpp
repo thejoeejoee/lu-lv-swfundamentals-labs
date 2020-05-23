@@ -1,4 +1,10 @@
 #include <cstdlib>
+#include <iostream>
+#include <sstream>
+#include <algorithm>
+#include "Remover.h"
+#include "List.h"
+
 /**
  * @author Josef Kolar, jk19126
  * @brief G10, program working wih linked list to process numbers.
@@ -21,8 +27,48 @@ Example: List: 1 5 2 3 6 2 2 5 1 2. n=2 List after process: 1 5 2 6 2 2 1 2
 https://estudijas.lu.lv/mod/page/view.php?id=349989
 */
 
+
+
 int main() {
+    List<int> values;
+    int remover_value;
+
+    // parse first line with values
+    std::string input_line;
+    std::getline(std::cin, input_line);
+    std::stringstream input_stream(input_line);
+    int v;
+    while (input_stream >> v) {
+        values.append(v);
+    }
+
+    // parse 'remover_value'
+    std::getline(std::cin, input_line);
+    std::stringstream remover_line(input_line);
+    if (!(remover_line >> remover_value)) {
+        std::cerr << "Unable to parse the 'n' on second line." << std::endl;
+        return EXIT_FAILURE;
+    }
+
+    auto item = values.head();
+    while (item) {
+        std::cout << values.value_of(*item) << " ";
+        item = values.next(item);
+    }
+    std::cout << std::endl;
+
+    // new instance of remover with 'n' value
+    Remover<int> remover(remover_value);
+    values.remove_if(remover);
+
+    item = values.head();
+    while (item) {
+        std::cout << values.value_of(item) << " ";
+        item = values.next(item);
+    }
+    std::cout << std::endl;
 
     return EXIT_SUCCESS;
-
 }
+
+
