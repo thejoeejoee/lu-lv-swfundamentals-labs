@@ -1,7 +1,6 @@
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
-#include <algorithm>
 #include "Remover.h"
 #include "List.h"
 

@@ -3,6 +3,9 @@
  * @date 23.05.2020
  */
 
+#ifndef SWFUNDAMENTALS_02_REMOVER_H
+#define SWFUNDAMENTALS_02_REMOVER_H
+
 #include <algorithm>
 
 /**
@@ -20,14 +23,16 @@ public:
         remover_value(remover_value),
         std::function<bool(const T &)>([this](const T & value) {
             if (!has_prev) {
-                // first value_of, just store for following usage
+                // first value, just store for next calls
                 prev = value;
                 has_prev = true;
                 return false;
             }
-            // remove <=> previous is remover value and current is not equal to remover value_of
+            // remove <==> previous is remover value and current is not equal to remover value
             bool remove = prev == this->remover_value && value != prev;
             prev = value;
             return remove;
         }) {};
 };
+
+#endif

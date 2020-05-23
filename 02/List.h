@@ -121,4 +121,4 @@ protected:
     item_ptr m_tail = nullptr;
 };
 
-#endif //SWFUNDAMENTALS_02_LIST_H
+#endif
