@@ -32,7 +32,7 @@ int main(int argc, char * argv[]) {
 
     const vector<char> DELIMITERS({'.', ',', '(', ')', '!', '?'});
 
-    char c;
+    short c;
     string word;
 
     do {
