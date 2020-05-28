@@ -20,9 +20,19 @@ https://estudijas.lu.lv/mod/page/view.php?id=349989
 #include <cctype>
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <algorithm>
 
-int main() {
+int main(int argc, char* argv[]) {
+    if (argc != 3)
+        return EXIT_FAILURE;
+    std::ifstream in;
+    in.open(argv[1]);
+    std::ofstream out;
+    out.open(argv[2]);
+    if (!(in.is_open() && out.is_open()))
+        return EXIT_FAILURE;
+
     const std::vector<char> DELIMITERS({'.', ',', '(', ')', '!', '?'});
     short c;
     std::string word;
@@ -31,7 +41,7 @@ int main() {
     std::unordered_map<std::string, int> stats;
 
     do {
-        c = std::cin.get();
+        c = in.get();
 
         if (c == EOF || isspace(c) || std::count(DELIMITERS.begin(), DELIMITERS.end(), c)) {
             if (word.empty()) // just another delimiter
@@ -49,7 +59,9 @@ int main() {
     } while (c != EOF);
 
     for (auto & pair : stats) {
-        std::cout << pair.first << " " << pair.second << std::endl;
+        out << pair.first << " " << pair.second << std::endl;
     }
+    in.close();
+    out.close();
     return EXIT_SUCCESS;
 }
