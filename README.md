@@ -6,7 +6,7 @@
 ### 02
 [source code A](./02/02_01.cpp), [source code B](./02/02_02.cpp), [test plan](./02/02.md)
 
-### 03 [WIP]
+### 03
 [source code](./03/03.cpp), [test plan](./03/03.md)
 
 
